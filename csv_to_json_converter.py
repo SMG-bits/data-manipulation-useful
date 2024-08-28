@@ -14,7 +14,7 @@ def csv_to_json(csv_file_path, json_file_path):
     data = []
     try:
         with open(csv_file_path, 'r', encoding='utf-8') as csvfile:
-            # Try to detect the delimiter
+            # Try to detect the delimiter // Inițiază dedectarea delimitatorului
             dialect = csv.Sniffer().sniff(csvfile.read(1024))
             csvfile.seek(0)
             csvreader = csv.DictReader(csvfile, dialect=dialect)
@@ -33,18 +33,18 @@ def csv_to_json(csv_file_path, json_file_path):
     except Exception as e:
         print(f"Error writing JSON file: {e}")
 
-# Create a root window and hide it
+# Create a root window and hide it 
 root = tk.Tk()
 root.withdraw()
 
-# Open file dialog to select CSV file
+# Open file dialog to select CSV file // Deschide fereastra pentru căutarea fișierului CSV
 csv_file_path = filedialog.askopenfilename(title="Select CSV file", filetypes=[("CSV files", "*.csv")])
 
 if not csv_file_path:
     print("No file selected. Exiting.")
     exit()
 
-# Get the directory of the selected CSV file
+# Get the directory of the selected CSV file // Accesează directorul sursă în care plasează JSON-ul rezultat
 json_file_path = csv_file_path.rsplit('.', 1)[0] + '.json'
 
 csv_to_json(csv_file_path, json_file_path)
