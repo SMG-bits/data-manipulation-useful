@@ -14,7 +14,8 @@ def csv_to_json(csv_file_path, json_file_path):
     data = []
     try:
         with open(csv_file_path, 'r', encoding='utf-8') as csvfile:
-            # Try to detect the delimiter // Inițiază dedectarea delimitatorului
+
+            # Try to detect the delimiter // Inițiază dedectarea delimitatorului // works with , and ; // On MacOS errors with | // use alternative csv-bar_to_json_converter.py
             dialect = csv.Sniffer().sniff(csvfile.read(1024))
             csvfile.seek(0)
             csvreader = csv.DictReader(csvfile, dialect=dialect)
